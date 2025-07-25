@@ -19,7 +19,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'validar',
+    path: 'validador',
     loadComponent: () =>
       import('./pages/validador/validador.page').then((p) => p.ValidadorPage),
   },

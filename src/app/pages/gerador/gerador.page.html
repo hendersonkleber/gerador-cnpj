@@ -1,22 +1,22 @@
-<div
-  class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center space-y-6"
->
-  <h2 class="text-2xl font-semibold text-gray-800">CNPJ Gerado</h2>
-  <div class="text-3xl font-mono text-blue-600 bg-blue-50 rounded p-4">
-    {{ cnpj() | cnpj }}
+<div class="h-full container mx-auto flex flex-col items-center justify-center">
+  <div class="flex items-center">
+    <div class="text-6xl font-mono mr-4">
+      {{ cnpj() | cnpj }}
+    </div>
+
+    <button
+      type="button"
+      (click)="gerar()"
+      class="bg-neon-500/70 hover:bg-neon-500 cursor-pointer font-semibold px-6 py-3 rounded-xl transition mr-2"
+    >
+      GERAR
+    </button>
+    <button
+      type="button"
+      (click)="copiar()"
+      class="bg-neon-500/70 hover:bg-neon-500 cursor-pointer font-semibold px-6 py-3 rounded-xl transition"
+    >
+      {{ copiado() ? "COPIADO" : "COPIAR" }}
+    </button>
   </div>
-  <button
-    type="button"
-    (click)="gerar()"
-    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition"
-  >
-    GERAR
-  </button>
-  <button
-    type="button"
-    (click)="copiar()"
-    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition"
-  >
-    {{ copiado() ? "COPIADO" : "COPIAR" }}
-  </button>
 </div>
