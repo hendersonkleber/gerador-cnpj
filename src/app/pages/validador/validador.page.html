@@ -1,0 +1,14 @@
+<div class="mt-10 bg-white p-8 rounded-xl shadow w-full max-w-xl text-center">
+  <h2 class="text-xl font-semibold mb-4">Digite um CNPJ:</h2>
+
+  <input
+    type="text"
+    placeholder="00.000.000/0000-00"
+    class="w-full p-3 border rounded mb-4 text-center font-mono text-lg"
+    [(ngModel)]="cnpj"
+  />
+
+  <p class="mt-6 text-lg font-semibold">
+    {{ valido() ? "CNPJ Válido ✅" : "CNPJ Inválido ❌" }}
+  </p>
+</div>

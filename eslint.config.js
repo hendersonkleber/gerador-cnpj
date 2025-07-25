@@ -17,6 +17,7 @@ module.exports = tseslint.config(
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      "@typescript-eslint/no-explicit-any": "warn",
       "@angular-eslint/directive-selector": [
         "error",
         {
@@ -43,6 +44,12 @@ module.exports = tseslint.config(
       ...angular.configs.templateAccessibility,
       prettierRecommended,
     ],
-    rules: {},
+    rules: {
+      "@angular-eslint/template/no-negated-async": "error",
+      "@angular-eslint/template/banana-in-box": "error",
+      "@angular-eslint/template/prefer-control-flow": "error",
+      "@angular-eslint/template/button-has-type": "error",
+      "@angular-eslint/template/click-events-have-key-events": "error",
+    },
   },
 );
