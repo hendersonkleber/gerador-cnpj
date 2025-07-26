@@ -6,7 +6,7 @@ Projeto em Angular para geração e validação de **CNPJs** com três funcional
 - 🔠 **CNPJ Alfanumérico**
 - ✅ **Validador de CNPJ**
 
-![Screenshot da Aplicação](.github/screenshot.jpg)
+![Screenshot da Aplicação](.github/screenshot.png)
 
 ## 🚀 Funcionalidades
 
@@ -34,8 +34,8 @@ Permite ao usuário digitar um CNPJ e verificar se ele é válido.
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/hendersonkleber/gerador-cnpj.git
+cd gerador-cnpj
 ```
 
 ### 2. Instale as dependências
@@ -55,7 +55,7 @@ Acesse em: [http://localhost:4200](http://localhost:4200)
 ## 📷 Screenshot
 
 A imagem de preview da aplicação está disponível em:  
-`.github/screenshot.jpg`
+`.github/screenshot.png`
 
 ---
 
