@@ -27,7 +27,7 @@ export class CNPJ {
 
   static aleatorioAlfanumerico(): string {
     const gerarCaractere = (): string => {
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      const chars = 'ABCDEGHJKLMNPRSTVWXYZ0123456789';
       return chars[Math.floor(Math.random() * chars.length)];
     };
 
