@@ -6,6 +6,6 @@
     "source.removeUnusedImports": "explicit"
   },
   "files.associations": {
-    "tailwind.css": "tailwindcss"
+    "*.css": "tailwindcss"
   }
 }

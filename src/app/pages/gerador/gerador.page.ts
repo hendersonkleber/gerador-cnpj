@@ -1,10 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CnpjPipe } from '../../pipes/cnpj.pipe';
 import { CNPJ } from '../../utils/cnpj.util';
 
 @Component({
   selector: 'app-gerador',
   imports: [CnpjPipe],
+  host: {
+    class: 'flex-1 place-content-center',
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './gerador.page.html',
 })
 export class GeradorPage {

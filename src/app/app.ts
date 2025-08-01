@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   host: {
-    class: 'block h-screen min-h-screen bg-gray-100 flex flex-col',
+    class: 'block min-h-svh flex flex-col bg-background text-foreground',
     role: 'application',
   },
   template: `
     <app-header />
 
-    <main class="flex-grow">
+    <main class="flex-1 flex flex-col relative overflow-auto">
       <router-outlet />
     </main>
 

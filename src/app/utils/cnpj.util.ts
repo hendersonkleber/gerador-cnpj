@@ -5,9 +5,7 @@ export class CNPJ {
   private static readonly regexCaracteresMascara: RegExp = /[./-]/g;
   private static readonly regexCaracteresNaoPermitidos: RegExp = /[^A-Z\d./-]/i;
   private static readonly valorBase: number = '0'.charCodeAt(0);
-  private static readonly pesosDV: number[] = [
-    6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2,
-  ];
+  private static readonly pesosDV: number[] = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
   private static readonly cnpjZerado: string = '00000000000000';
 
   static aleatorio(): string {
@@ -46,14 +44,9 @@ export class CNPJ {
     if (!this.regexCaracteresNaoPermitidos.test(cnpj)) {
       const cnpjSemMascara = this.removeMascaraCNPJ(cnpj);
 
-      if (
-        this.regexCNPJ.test(cnpjSemMascara) &&
-        cnpjSemMascara !== CNPJ.cnpjZerado
-      ) {
+      if (this.regexCNPJ.test(cnpjSemMascara) && cnpjSemMascara !== CNPJ.cnpjZerado) {
         const dvInformado = cnpjSemMascara.substring(this.tamanhoCNPJSemDV);
-        const dvCalculado = this.calculaDV(
-          cnpjSemMascara.substring(0, this.tamanhoCNPJSemDV),
-        );
+        const dvCalculado = this.calculaDV(cnpjSemMascara.substring(0, this.tamanhoCNPJSemDV));
 
         return dvInformado === dvCalculado;
       }
@@ -83,15 +76,11 @@ export class CNPJ {
       }
     }
 
-    throw new Error(
-      'Não é possível calcular o DV pois o CNPJ fornecido é inválido',
-    );
+    throw new Error('Não é possível calcular o DV pois o CNPJ fornecido é inválido');
   }
 
   static formatar(cnpj: string): string {
-    return cnpj
-      .toUpperCase()
-      .replace(/^(.{2})(.{3})(.{3})(.{4})(.{2})$/, '$1.$2.$3/$4-$5');
+    return cnpj.toUpperCase().replace(/^(.{2})(.{3})(.{3})(.{4})(.{2})$/, '$1.$2.$3/$4-$5');
   }
 
   static removeMascaraCNPJ(cnpj: string): string {

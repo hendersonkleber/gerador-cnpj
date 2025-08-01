@@ -8,5 +8,13 @@
   "bracketSpacing": true,
   "arrowParens": "avoid",
   "bracketSameLine": true,
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "angular"
+      }
+    }
+  ]
 }
