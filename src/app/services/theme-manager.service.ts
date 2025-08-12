@@ -1,14 +1,13 @@
+import {
+  DARK_MODE_CLASS_NAME,
+  LIGHT_MODE_CLASS_NAME,
+  PREFERS_COLOR_SCHEME_DARK,
+  THEME_LOCAL_STORAGE_KEY,
+} from '@/constants/theme.constant';
+import { Theme } from '@/types/theme.type';
 import { DOCUMENT } from '@angular/common';
 import { Injectable, afterNextRender, inject, signal } from '@angular/core';
 import { Subject } from 'rxjs';
-import { LocalStorageService } from './local-storage.service';
-
-export const THEME_LOCAL_STORAGE_KEY = 'theme_preference';
-export const DARK_MODE_CLASS_NAME = 'dark';
-export const LIGHT_MODE_CLASS_NAME = 'light';
-export const PREFERS_COLOR_SCHEME_DARK = '(prefers-color-scheme: dark)';
-
-export type Theme = 'light' | 'dark';
 
 function preferedScheme(): 'dark' | 'light' {
   return window.matchMedia(PREFERS_COLOR_SCHEME_DARK).matches ? 'dark' : 'light';
@@ -17,15 +16,12 @@ function preferedScheme(): 'dark' | 'light' {
 @Injectable({ providedIn: 'root' })
 export class ThemeManager {
   private readonly document = inject(DOCUMENT);
-  private readonly localStorageService = inject(LocalStorageService);
 
-  readonly theme = signal<Theme>(this.getThemeFromLocalStorage() ?? 'light');
+  readonly theme = signal<Theme>('light');
   readonly themeChanged$ = new Subject<void>();
 
   constructor() {
-    afterNextRender(() => {
-      this.loadThemePreference();
-    });
+    afterNextRender(() => this.loadThemePreference());
   }
 
   setTheme(theme: Theme): void {
@@ -47,11 +43,11 @@ export class ThemeManager {
   }
 
   private getThemeFromLocalStorage(): Theme | null {
-    return this.localStorageService.getItem(THEME_LOCAL_STORAGE_KEY) as Theme | null;
+    return localStorage.getItem(THEME_LOCAL_STORAGE_KEY) as Theme | null;
   }
 
   private updateLocalStorage(theme: Theme) {
-    this.localStorageService.setItem(THEME_LOCAL_STORAGE_KEY, theme);
+    localStorage.setItem(THEME_LOCAL_STORAGE_KEY, theme);
   }
 
   private updateDocumentClasses(theme: 'dark' | 'light'): void {

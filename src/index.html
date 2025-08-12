@@ -15,6 +15,23 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"
       rel="stylesheet" />
+
+    <script>
+      const THEME_PREFERENCE_LOCAL_STORAGE_KEY = 'theme_preference';
+      const DARK_MODE_CLASS_NAME = 'dark';
+      const LIGHT_MODE_CLASS_NAME = 'light';
+
+      const theme = localStorage.getItem(THEME_PREFERENCE_LOCAL_STORAGE_KEY) ?? 'auto';
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const documentClassList = this.document.documentElement.classList;
+
+      this.document.documentElement.className = '';
+      if (theme === 'dark' || (theme === 'auto' && prefersDark)) {
+        documentClassList.add(DARK_MODE_CLASS_NAME);
+      } else {
+        documentClassList.add(LIGHT_MODE_CLASS_NAME);
+      }
+    </script>
   </head>
 
   <body>
