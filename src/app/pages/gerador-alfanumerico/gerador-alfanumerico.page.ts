@@ -13,10 +13,10 @@ import { CNPJ } from '../../utils/cnpj.util';
 })
 export class GeradorAlfanumericoPage {
   public readonly copiado = signal<boolean>(false);
-  public readonly cnpj = signal<string>(CNPJ.aleatorioAlfanumerico());
+  public readonly cnpj = signal<string>(CNPJ.aleatorio(true));
 
   public gerar() {
-    this.cnpj.set(CNPJ.aleatorioAlfanumerico());
+    this.cnpj.set(CNPJ.aleatorio(true));
     this.copiado.set(false);
   }
 

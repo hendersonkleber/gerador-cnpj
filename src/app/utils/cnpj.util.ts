@@ -8,36 +8,34 @@ export class CNPJ {
   private static readonly pesosDV: number[] = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
   private static readonly cnpjZerado: string = '00000000000000';
 
-  static aleatorio(): string {
+  static aleatorio(alfanumerico = false): string {
     const gerarCaractere = (): string => {
-      const chars = '0123456789';
+      const chars = alfanumerico ? 'ABCDEGHJKLMNPRSTVWXYZ0123456789' : '0123456789';
       return chars[Math.floor(Math.random() * chars.length)];
     };
 
-    let cnpj = '';
+    const cnpjBase = (): string => {
+      const cnpj = Array.from<string>({ length: this.tamanhoCNPJSemDV }).fill('0');
 
-    for (let index = 0; index < 8; index++) cnpj += gerarCaractere();
+      if (alfanumerico) {
+        for (let i = 0; i < this.tamanhoCNPJSemDV; i++) {
+          cnpj[i] = gerarCaractere();
+        }
+      } else {
+        for (let i = 0; i < 8; i++) {
+          cnpj[i] = gerarCaractere();
+        }
 
-    cnpj += '0001';
+        cnpj[this.tamanhoCNPJSemDV - 1] = '1';
+      }
 
-    const digitosVerificadores = this.calculaDV(cnpj);
-
-    return cnpj + digitosVerificadores;
-  }
-
-  static aleatorioAlfanumerico(): string {
-    const gerarCaractere = (): string => {
-      const chars = 'ABCDEGHJKLMNPRSTVWXYZ0123456789';
-      return chars[Math.floor(Math.random() * chars.length)];
+      return cnpj.join('');
     };
 
-    let cnpj = '';
+    const cnpj = cnpjBase();
+    const dv = this.calculaDV(cnpj);
 
-    for (let index = 0; index < 12; index++) cnpj += gerarCaractere();
-
-    const digitosVerificadores = this.calculaDV(cnpj);
-
-    return cnpj + digitosVerificadores;
+    return cnpj + dv;
   }
 
   static validar(cnpj: string): boolean {

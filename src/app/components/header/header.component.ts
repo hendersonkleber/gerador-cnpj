@@ -1,4 +1,5 @@
-import { Theme, ThemeManager } from '@/services/theme-manager.service';
+import { ThemeManager } from '@/services/theme-manager.service';
+import { Theme } from '@/types/theme.type';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
